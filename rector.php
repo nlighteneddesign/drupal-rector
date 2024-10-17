@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use DrupalFinder\DrupalFinder;
+use DrupalRector\Convert\HookConvert;
 use DrupalRector\Set\Drupal10SetList;
 use DrupalRector\Set\Drupal8SetList;
 use DrupalRector\Set\Drupal9SetList;
@@ -17,6 +18,8 @@ return static function (RectorConfig $rectorConfig): void {
         Drupal9SetList::DRUPAL_9,
         Drupal10SetList::DRUPAL_10,
     ]);
+
+    $rectorConfig->rule(HookConvert::class);
 
     $drupalFinder = new DrupalFinder();
     $drupalFinder->locateRoot(__DIR__);
